@@ -6,6 +6,8 @@ SMBIOS Validation Tool is an open source tool that will validate SMBIOS records
 in vendor's firmware (BIOS) conformance to the SMBIOS requirements to Google
 Server Firmware Specification.
 
+Note: This is not an officially supported Google product.
+
 ## Terminology
 
 *   **SMBIOS** - System Management BIOS. The SMBIOS Specification addresses how
