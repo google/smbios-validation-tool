@@ -22,7 +22,7 @@ Note: This is not an officially supported Google product.
     unique handle id, and required fields with corresponding info. See below
     graph for more intuitive understanding.
 
-![SMBIOS Table](https://docs.google.com/drawings/d/e/2PACX-1vSa-CpaATNXhP-FZg9gV1dVQ_C8eRHE4TJRRB4lEQwCEXulKPcdeUOZn8obdWuwEKg2pLHr-8SKBFgZ/pub?w=562&h=434)
+![SMBIOS Table](https://docs.google.com/drawings/d/e/2PACX-1vTEVmlZfL6CkpNs44IZ1BAz3lxyBZ1VQRhjAmjwKpj8oJQcUtte3YcQgijGKAWc2Shl2LSaRoGojGIg/pub?w=562&h=434)
 
 ## Quick start
 
