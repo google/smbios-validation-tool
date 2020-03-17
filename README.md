@@ -22,7 +22,7 @@ Note: This is not an officially supported Google product.
     unique handle id, and required fields with corresponding info. See below
     graph for more intuitive understanding.
 
-![SMBIOS Table](https://docs.google.com/drawings/d/e/2PACX-1vSa-CpaATNXhP-FZg9gV1dVQ_C8eRHE4TJRRB4lEQwCEXulKPcdeUOZn8obdWuwEKg2pLHr-8SKBFgZ/pub?w=562&h=434)
+![SMBIOS Table](https://docs.google.com/drawings/d/e/2PACX-1vTEVmlZfL6CkpNs44IZ1BAz3lxyBZ1VQRhjAmjwKpj8oJQcUtte3YcQgijGKAWc2Shl2LSaRoGojGIg/pub?w=562&h=434)
 
 ## Quick start
 
@@ -45,13 +45,14 @@ Copy the binary to the machine. Then execute it simply as other executable
 files:
 
 ```shell
+PATH=$PATH:. smbios_validation.par
 ./smbios_validation.par
 ```
 
 The tool can also analyze a dmi dump file, although this is a rare use case:
 
 ```shell
-./smbios_validation.par --file=path_to_your_dump_file.txt
+./smbios_validation.par --file=path/to/your/dump_file.txt
 ```
 
 ## Output
