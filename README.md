@@ -46,7 +46,6 @@ files:
 
 ```shell
 PATH=$PATH:. smbios_validation.par
-./smbios_validation.par
 ```
 
 The tool can also analyze a dmi dump file, although this is a rare use case:
