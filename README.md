@@ -24,34 +24,31 @@ Note: This is not an officially supported Google product.
 
 ![SMBIOS Table](https://docs.google.com/drawings/d/e/2PACX-1vTEVmlZfL6CkpNs44IZ1BAz3lxyBZ1VQRhjAmjwKpj8oJQcUtte3YcQgijGKAWc2Shl2LSaRoGojGIg/pub?w=562&h=434)
 
-## Quick start
+## Installation
 
-### Prepare the Environment
+Note: Python3 is recommended to run this tool. The following instruction assumes
+Python3 is installed on the host.
 
-#### Install dmidecode
-
-*   Make sure dmidecode is installed, or dmidecode binary is in the same folder
-    when executing the tool.
-
-#### Install termcolor
+To install the tool, simply run:
 
 ```shell
-pip install termcolor
+git clone https://github.com/google/smbios-validation-tool.git
+pip3 install absl-py
+pip3 install termcolor
 ```
 
-### Execute the Tool
+## Execution
 
-Copy the binary to the machine. Then execute it simply as other executable
-files:
+Access to the root directory of the tool and simply run:
 
 ```shell
-PATH=$PATH:. smbios_validation.par
+python3 smbios_validation.py
 ```
 
 The tool can also analyze a dmi dump file, although this is a rare use case:
 
 ```shell
-./smbios_validation.par --file=path/to/your/dump_file.txt
+python3 smbios_validation.py --file=path/to/your/dump_file.txt
 ```
 
 ## Output
@@ -93,3 +90,15 @@ Again, action messages for validating groups of records do not have a fixed
 format. Our goal is to provide useful information for users to correct the
 error, so usually the action message will clearly state what the rule is and/or
 which part of the rule is not valid.
+
+## Troubleshooting
+
+### No such file or directory: 'dmidecode': 'dmidecode'
+
+Usually dmidecode should be included in Linux package. If this is not the case,
+install dmidecode first, and ensure the dmidecode executable is available in
+PATH when executing the utility, then run the following command:
+
+```shell
+PATH=$PATH:. python3 smbios_validation.py
+```

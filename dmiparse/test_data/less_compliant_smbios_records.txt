@@ -1,0 +1,56 @@
+Getting SMBIOS data from sysfs.
+SMBIOS 3.0 present.
+116 structures occupying 6104 bytes.
+Table at 0x000EBD80.
+
+Handle 0x0002, DMI type 2, 25 byte
+Base Board Information
+	Manufacturer: Lenovo
+	Product Name: Magnesium
+	Version: 1234567890
+	UUID: 03000200-0400-0500-0006-000700080009
+	Location In Chassis: Riser1
+	Chassis Handle: 0x0003
+	MAC Address: 00:1b:83:15:a3:24
+	Contained Object Handles: 5
+		0x009A
+		0x009B
+		0x009C
+		0x009D
+		0x009E
+	Characteristics:
+		PCI is supported
+		BIOS is upgradeable
+		ACPI is supported
+		UEFI is supported
+
+Handle 0x0125, DMI type 14, 11 bytes
+Group Associations
+	Name: ch0
+	Items: 2
+		0x003D (Memory Device)
+		0x003E (Memory Device)
+
+Handle 0x0126, DMI type 14, 11 bytes
+Group Associations
+	Name: ch1
+	Items: 2
+		0x003F (Memory Device)
+		0x0040 (Memory Device)
+
+Handle 0x0058, DMI type 148, 53 bytes
+OEM-specific Type
+	Header and Data:
+		94 35 58 00 02 01 02 03 04 05 06 07 08 09 0A 0B
+		0C 0D 0E 0F 10 11 12 13 14 15 16 17 18 19 1A 1B
+		1C 1D 1E 1F 20 21 22 23 24 25 26 27 28 00 00 00
+		00 00 00 00 00
+	Strings:
+		WLYDCRB.86B.WR.64.2019.19.3.03.1837
+		 0. 0.   0
+		4:2.1.21
+		N/A
+		 FRU: Ver 1.21
+		 N/A
+		N/A
+
