@@ -50,9 +50,6 @@ class Rule:
     self.err_msg = err_msg
     self.action_msg = action_msg
 
-
-# TODO: Add more rules for individual SMBIOS record validation
-
 rules = [
     # Rules for Type 0 (BIOS information) record
     Rule(
@@ -641,13 +638,13 @@ rules = [
             matcher.RecordTypeMatcher(constants.RecordType.MEMORY_DEVICE_RECORD)
         ]),
         validator.IndividualValidator([
-            validator.FieldPresentChecker('Configured Clock Speed'),
+            validator.FieldPresentChecker('Configured Memory Speed'),
             validator.FieldValueRegexpChecker(
-                'Configured Clock Speed',
+                'Configured Memory Speed',
                 constants.FieldValueRegexps.SPEED_REGEXP.value),
         ]),
-        'ERROR: Invalid Configured Clock Speed field in Type 17 (Memory Device) record.',
-        'ACTION: Please populate Configured Clock Speed field with valid speed.'
+        'ERROR: Invalid Configured Memory Speed field in Type 17 (Memory Device) record.',
+        'ACTION: Please populate Configured Memory Speed field with valid speed.'
     ),
 
     # Rules for Type 19 (Memory Array Mapped Address) records

@@ -42,7 +42,7 @@ class RecordType(enum.IntEnum):
 
 class FieldValueEnums(enum.Enum):
   """List all enums used to verify field value of records."""
-  CHASSIS_TYPES = ['Main Server Chassis']
+  CHASSIS_TYPES = ['Main Server Chassis', 'Rack Mount Chassis']
   CHASSIS_LOCK = ['Present', 'Not Present']
   PROCESSOR_TYPE = ['Central Processor']
   PROCESSOR_STATUS = ['Populated', 'Unpopulated', 'Enabled', 'Disabled']
@@ -53,7 +53,7 @@ class FieldValueEnums(enum.Enum):
   MEMORY_DEVICE_FORM_FACTOR = ['Unknown', 'DIMM']
   MEMORY_DEVICE_TYPES = ['Unknown', 'DDR4', 'LPDDR4']
   IPMI_DEVICE_INTERFACE_TYPES = [
-      'BT (Block Transfer)', 'KCS (Keyboard Controller style)'
+      'BT (Block Transfer)', 'KCS (Keyboard Control Style)'
   ]
 
 
