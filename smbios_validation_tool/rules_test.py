@@ -81,7 +81,7 @@ class RulesTest(googletest.TestCase):
         err_action_msgs, {
             'ERROR: Invalid Type field in Type 3 (Chassis) record.\nHandle ID: 0x0003':
                 ('ACTION: Please populate Type field with valid string.\n'
-                 'Valid Type(s): Main Server Chassis'),
+                 'Valid Type(s): Main Server Chassis, Rack Mount Chassis'),
             'ERROR: Invalid Lock field in Type 3 (Chassis) record.\nHandle ID: 0x0003':
                 ('ACTION: Please populate Lock field with valid string.\n'
                  'Valid Lock Status: Present, Not Present'),

@@ -33,7 +33,7 @@ class MatcherTest(googletest.TestCase):
     data_path = os.path.join(TEST_PATH, 'less_compliant_smbios_records.txt')
     data_file = resources.GetResourceFilename(data_path)
     self.records, _ = dmiparse.DmiParser(data_file).parse()
-    self.assertLen(self.records, 382)
+    self.assertLen(self.records, 294)
 
   def testRecordTypeMatcherMatchesSingleRecord(self):
     matchers = matcher.Matcher(
@@ -53,7 +53,7 @@ class MatcherTest(googletest.TestCase):
     for _, record in self.records.items():
       if matchers.is_matched_record(record):
         matched_records.append(record)
-    self.assertLen(matched_records, 53)
+    self.assertLen(matched_records, 3)
 
 
 if __name__ == '__main__':
