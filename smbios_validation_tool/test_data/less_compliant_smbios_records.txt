@@ -972,6 +972,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x0061
 	Memory Array Mapped Address Handle: 0x0060
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x0063, DMI type 17, 40 bytes
 Memory Device
@@ -1005,6 +1007,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x0063
 	Memory Array Mapped Address Handle: 0x0060
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x0065, DMI type 17, 40 bytes
 Memory Device
@@ -1062,6 +1066,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x0066
 	Memory Array Mapped Address Handle: 0x0060
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x0068, DMI type 17, 40 bytes
 Memory Device
@@ -1095,6 +1101,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x0068
 	Memory Array Mapped Address Handle: 0x0060
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x006A, DMI type 17, 40 bytes
 Memory Device
@@ -1152,6 +1160,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x006B
 	Memory Array Mapped Address Handle: 0x0060
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x006D, DMI type 17, 40 bytes
 Memory Device
@@ -1185,6 +1195,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x006D
 	Memory Array Mapped Address Handle: 0x0060
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x006F, DMI type 17, 40 bytes
 Memory Device
@@ -1242,6 +1254,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x0070
 	Memory Array Mapped Address Handle: 0x0060
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x0072, DMI type 17, 40 bytes
 Memory Device
@@ -1275,6 +1289,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x0072
 	Memory Array Mapped Address Handle: 0x0060
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x0074, DMI type 17, 40 bytes
 Memory Device
@@ -1349,6 +1365,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x0077
 	Memory Array Mapped Address Handle: 0x0076
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x0079, DMI type 17, 40 bytes
 Memory Device
@@ -1382,6 +1400,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x0079
 	Memory Array Mapped Address Handle: 0x0076
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x007B, DMI type 17, 40 bytes
 Memory Device
@@ -1439,6 +1459,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x007C
 	Memory Array Mapped Address Handle: 0x0076
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x007E, DMI type 17, 40 bytes
 Memory Device
@@ -1472,6 +1494,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x007E
 	Memory Array Mapped Address Handle: 0x0076
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x0080, DMI type 17, 40 bytes
 Memory Device
@@ -1529,6 +1553,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x0081
 	Memory Array Mapped Address Handle: 0x0076
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x0083, DMI type 17, 40 bytes
 Memory Device
@@ -1562,6 +1588,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x0083
 	Memory Array Mapped Address Handle: 0x0076
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x0085, DMI type 17, 40 bytes
 Memory Device
@@ -1619,6 +1647,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x0086
 	Memory Array Mapped Address Handle: 0x0076
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x0088, DMI type 17, 40 bytes
 Memory Device
@@ -1652,6 +1682,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x0088
 	Memory Array Mapped Address Handle: 0x0076
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x008A, DMI type 17, 40 bytes
 Memory Device
@@ -1726,6 +1758,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x008D
 	Memory Array Mapped Address Handle: 0x008C
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x008F, DMI type 17, 40 bytes
 Memory Device
@@ -1759,6 +1793,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x008F
 	Memory Array Mapped Address Handle: 0x008C
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x0091, DMI type 17, 40 bytes
 Memory Device
@@ -1816,6 +1852,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x0092
 	Memory Array Mapped Address Handle: 0x008C
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x0094, DMI type 17, 40 bytes
 Memory Device
@@ -1849,6 +1887,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x0094
 	Memory Array Mapped Address Handle: 0x008C
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x0096, DMI type 17, 40 bytes
 Memory Device
@@ -1906,6 +1946,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x0097
 	Memory Array Mapped Address Handle: 0x008C
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x0099, DMI type 17, 40 bytes
 Memory Device
@@ -1939,6 +1981,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x0099
 	Memory Array Mapped Address Handle: 0x008C
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x009B, DMI type 17, 40 bytes
 Memory Device
@@ -1996,6 +2040,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x009C
 	Memory Array Mapped Address Handle: 0x008C
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x009E, DMI type 17, 40 bytes
 Memory Device
@@ -2029,6 +2075,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x009E
 	Memory Array Mapped Address Handle: 0x008C
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00A0, DMI type 17, 40 bytes
 Memory Device
@@ -2103,6 +2151,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00A3
 	Memory Array Mapped Address Handle: 0x00A2
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00A5, DMI type 17, 40 bytes
 Memory Device
@@ -2136,6 +2186,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00A5
 	Memory Array Mapped Address Handle: 0x00A2
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00A7, DMI type 17, 40 bytes
 Memory Device
@@ -2193,6 +2245,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00A8
 	Memory Array Mapped Address Handle: 0x00A2
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00AA, DMI type 17, 40 bytes
 Memory Device
@@ -2226,6 +2280,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00AA
 	Memory Array Mapped Address Handle: 0x00A2
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00AC, DMI type 17, 40 bytes
 Memory Device
@@ -2283,6 +2339,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00AD
 	Memory Array Mapped Address Handle: 0x00A2
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00AF, DMI type 17, 40 bytes
 Memory Device
@@ -2316,6 +2374,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00AF
 	Memory Array Mapped Address Handle: 0x00A2
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00B1, DMI type 17, 40 bytes
 Memory Device
@@ -2373,6 +2433,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00B2
 	Memory Array Mapped Address Handle: 0x00A2
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00B4, DMI type 17, 40 bytes
 Memory Device
@@ -2406,6 +2468,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00B4
 	Memory Array Mapped Address Handle: 0x00A2
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00B6, DMI type 17, 40 bytes
 Memory Device
@@ -2480,6 +2544,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00B9
 	Memory Array Mapped Address Handle: 0x00B8
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00BB, DMI type 17, 40 bytes
 Memory Device
@@ -2513,6 +2579,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00BB
 	Memory Array Mapped Address Handle: 0x00B8
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00BD, DMI type 17, 40 bytes
 Memory Device
@@ -2570,6 +2638,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00BE
 	Memory Array Mapped Address Handle: 0x00B8
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00C0, DMI type 17, 40 bytes
 Memory Device
@@ -2603,6 +2673,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00C0
 	Memory Array Mapped Address Handle: 0x00B8
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00C2, DMI type 17, 40 bytes
 Memory Device
@@ -2660,6 +2732,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00C3
 	Memory Array Mapped Address Handle: 0x00B8
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00C5, DMI type 17, 40 bytes
 Memory Device
@@ -2693,6 +2767,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00C5
 	Memory Array Mapped Address Handle: 0x00B8
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00C7, DMI type 17, 40 bytes
 Memory Device
@@ -2750,6 +2826,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00C8
 	Memory Array Mapped Address Handle: 0x00B8
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00CA, DMI type 17, 40 bytes
 Memory Device
@@ -2783,6 +2861,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00CA
 	Memory Array Mapped Address Handle: 0x00B8
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00CC, DMI type 17, 40 bytes
 Memory Device
@@ -2857,6 +2937,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00CF
 	Memory Array Mapped Address Handle: 0x00CE
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00D1, DMI type 17, 40 bytes
 Memory Device
@@ -2890,6 +2972,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00D1
 	Memory Array Mapped Address Handle: 0x00CE
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00D3, DMI type 17, 40 bytes
 Memory Device
@@ -2947,6 +3031,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00D4
 	Memory Array Mapped Address Handle: 0x00CE
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00D6, DMI type 17, 40 bytes
 Memory Device
@@ -2980,6 +3066,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00D6
 	Memory Array Mapped Address Handle: 0x00CE
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00D8, DMI type 17, 40 bytes
 Memory Device
@@ -3037,6 +3125,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00D9
 	Memory Array Mapped Address Handle: 0x00CE
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00DB, DMI type 17, 40 bytes
 Memory Device
@@ -3070,6 +3160,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00DB
 	Memory Array Mapped Address Handle: 0x00CE
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00DD, DMI type 17, 40 bytes
 Memory Device
@@ -3127,6 +3219,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00DE
 	Memory Array Mapped Address Handle: 0x00CE
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00E0, DMI type 17, 40 bytes
 Memory Device
@@ -3160,6 +3254,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00E0
 	Memory Array Mapped Address Handle: 0x00CE
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00E2, DMI type 17, 40 bytes
 Memory Device
@@ -3234,6 +3330,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00E5
 	Memory Array Mapped Address Handle: 0x00E4
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00E7, DMI type 17, 40 bytes
 Memory Device
@@ -3267,6 +3365,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00E7
 	Memory Array Mapped Address Handle: 0x00E4
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00E9, DMI type 17, 40 bytes
 Memory Device
@@ -3324,6 +3424,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00EA
 	Memory Array Mapped Address Handle: 0x00E4
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00EC, DMI type 17, 40 bytes
 Memory Device
@@ -3357,6 +3459,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00EC
 	Memory Array Mapped Address Handle: 0x00E4
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00EE, DMI type 17, 40 bytes
 Memory Device
@@ -3414,6 +3518,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00EF
 	Memory Array Mapped Address Handle: 0x00E4
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00F1, DMI type 17, 40 bytes
 Memory Device
@@ -3447,6 +3553,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00F1
 	Memory Array Mapped Address Handle: 0x00E4
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00F3, DMI type 17, 40 bytes
 Memory Device
@@ -3504,6 +3612,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00F4
 	Memory Array Mapped Address Handle: 0x00E4
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00F6, DMI type 17, 40 bytes
 Memory Device
@@ -3537,6 +3647,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00F6
 	Memory Array Mapped Address Handle: 0x00E4
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00F8, DMI type 17, 40 bytes
 Memory Device
@@ -3611,6 +3723,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00FB
 	Memory Array Mapped Address Handle: 0x00FA
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00FD, DMI type 17, 40 bytes
 Memory Device
@@ -3644,6 +3758,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x00FD
 	Memory Array Mapped Address Handle: 0x00FA
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x00FF, DMI type 17, 40 bytes
 Memory Device
@@ -3701,6 +3817,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x0100
 	Memory Array Mapped Address Handle: 0x00FA
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x0102, DMI type 17, 40 bytes
 Memory Device
@@ -3734,6 +3852,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x0102
 	Memory Array Mapped Address Handle: 0x00FA
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x0104, DMI type 17, 40 bytes
 Memory Device
@@ -3791,6 +3911,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x0105
 	Memory Array Mapped Address Handle: 0x00FA
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x0107, DMI type 17, 40 bytes
 Memory Device
@@ -3824,6 +3946,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x0107
 	Memory Array Mapped Address Handle: 0x00FA
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x0109, DMI type 17, 40 bytes
 Memory Device
@@ -3881,6 +4005,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x010A
 	Memory Array Mapped Address Handle: 0x00FA
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x010C, DMI type 17, 40 bytes
 Memory Device
@@ -3914,6 +4040,8 @@ Memory Device Mapped Address
 	Physical Device Handle: 0x010C
 	Memory Array Mapped Address Handle: 0x00FA
 	Partition Row Position: 1
+	Interleave Position: 1
+	Interleaved Data Depth: 1
 
 Handle 0x010E, DMI type 17, 40 bytes
 Memory Device

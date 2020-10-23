@@ -46,7 +46,7 @@ class FieldValueEnums(enum.Enum):
   CHASSIS_LOCK = ['Present', 'Not Present']
   PROCESSOR_TYPE = ['Central Processor']
   PROCESSOR_STATUS = ['Populated', 'Unpopulated', 'Enabled', 'Disabled']
-  SYSTEM_SLOTS_CURRENT_USAGE = ['In Use', 'Available']
+  SYSTEM_SLOTS_CURRENT_USAGE = ['In Use', 'Available', 'Unknown']
   SYSTEM_SLOTS_LENGTH = ['Short', 'Long']
   PHYSICAL_MEMORY_ARRAY_LOCATION = ['System Board Or Motherboard']
   PHYSICAL_MEMORY_ARRAY_USE = ['System Memory']
@@ -60,6 +60,7 @@ class FieldValueEnums(enum.Enum):
 class FieldValueRegexps(enum.Enum):
   """List all regex patterns used to verify field value of records."""
   NUMBER_REGEXP = r'\d+'
+  NUMBER_WITH_UNKNOWN_REGEXP = r'\d+|unknown'
   HEX_REGEXP = r'0x[0-9A-Fa-f]+'
   SPEED_REGEXP = r'(Unknown)|(\d+ [KMG]T/s)'
   SIZE_REGEXP = r'(Unknown)|(No Module Installed)|(\d+ ([kmgtKMGT]B|bits))'
@@ -68,4 +69,6 @@ class FieldValueRegexps(enum.Enum):
   DEVPATH_REGEXP = r'[\w/]*'
   OEM_FOR_GOOGLE_REGEXP = r'0x[0-9A-Fa-f]*67'
   VENDOR_FOR_GOOGLE_REGEXP = r'.*Google.*'
-  CPU_REGEXP = r'CPU\d+'
+  SOCKET_DESIGNATION_REGEXP = r'(CPU|P)\d+'
+  DEVICE_LOCATOR_REGEXP = r'.*(DIMM|Slot).*\d+'
+  BANK_LOCATOR_REGEXP = r'.*(Node|Channel).*'

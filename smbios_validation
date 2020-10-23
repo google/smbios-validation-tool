@@ -20,6 +20,7 @@ from absl import app
 from absl import flags
 from dmiparse import DmiParser
 from smbios_validation_tool import rules
+from smbios_validation_tool.error_bucket import ErrorBucket
 from smbios_validation_tool.validator import GroupValidator
 import termcolor
 
@@ -58,21 +59,25 @@ def main(argv):
   is_less_compliant = True
 
   # Validate rules for individual SMBIOS record
+  error_bucket = ErrorBucket()
   for record in records.values():
     for rule in rules.rules:
-      if rule.matchers.is_matched_record(
-          record) and not rule.validators.validate_rule(record, records):
-        is_less_compliant = False
-        err_msg = rule.err_msg + '\nHandle ID: ' + record.handle_id
-        print(termcolor.colored(err_msg, color='red', attrs=['bold']))
-        print(
-            termcolor.colored(
-                rule.action_msg, color='yellow', attrs=['underline']))
-        print('\n')
+      # Not a matched record, no need to validate it
+      if not rule.matchers.is_matched_record(record):
+        continue
+      # Validation passed, no error message to print
+      if rule.validators.validate_rule(record, records):
+        continue
+
+      is_less_compliant = False
+      error_bucket.add_error(record.handle_id, (rule.err_msg, rule.action_msg))
 
   # Validate groups of SMBIOS records
   if not GroupValidator(records, groups).validate():
     is_less_compliant = False
+
+  # Print error messages
+  error_bucket.print_buckets()
 
   if is_less_compliant:
     print(

@@ -212,7 +212,7 @@ rules = [
             validator.FieldPresentChecker('Socket Designation'),
             validator.FieldValueRegexpChecker(
                 'Socket Designation',
-                constants.FieldValueRegexps.CPU_REGEXP.value),
+                constants.FieldValueRegexps.SOCKET_DESIGNATION_REGEXP.value),
         ]),
         'ERROR: Invalid Socket Designation field in Type 4 (Processor Information) record.',
         ('ACTION: Please populate Socket Designation field with valid string.\n'
@@ -314,7 +314,7 @@ rules = [
         ]), 'ERROR: Invalid Designation field in Type 9 (System Slots) record.',
         ('ACTION: Please populate Designation field with valid Slot silkscreen.\n'
          'e.g. PE0, PE4, etc.')),
-    # TODO: check there are no 2 slots sharing same designation.
+    # TODO(xuhha): check there are no 2 slots sharing same designation.
     Rule(
         matcher.Matcher([
             matcher.RecordTypeMatcher(constants.RecordType.SYSTEM_SLOTS_RECORD)
@@ -370,7 +370,7 @@ rules = [
         ]), 'ERROR: Invalid Bus Address field in Type 9 (System Slots) record.',
         ('ACTION: Please populate Bus Address field with valid string.\n'
          'e.g. 0000:c0:02.0.')),
-    # TODO: Check for the actual presence of the PCI device from
+    # TODO(xuhha): Check for the actual presence of the PCI device from
     # the above address, using 'lspci'.
 
     # Rules for Type 14 (Group Associations) records
@@ -558,22 +558,27 @@ rules = [
         ]),
         validator.IndividualValidator([
             validator.FieldPresentChecker('Locator'),
-            validator.FieldValueRegexpChecker('Locator', r'.*DIMM.*'),
+            validator.FieldValueRegexpChecker(
+                'Locator',
+                constants.FieldValueRegexps.DEVICE_LOCATOR_REGEXP.value),
         ]), 'ERROR: Invalid Locator field in Type 17 (Memory Device) record.',
         ('ACTION: Please populate Locator field with valid string.\n'
-         'Silk screen for the DIMM location. e.g. DIMM0')),
+         'This field is silk screen for the DIMM location. e.g. DIMM0')),
     Rule(
         matcher.Matcher([
             matcher.RecordTypeMatcher(constants.RecordType.MEMORY_DEVICE_RECORD)
         ]),
         validator.IndividualValidator([
             validator.FieldPresentChecker('Bank Locator'),
-            validator.FieldValueRegexpChecker('Bank Locator', r'Node.*\d+'),
+            validator.FieldValueRegexpChecker(
+                'Bank Locator',
+                constants.FieldValueRegexps.BANK_LOCATOR_REGEXP.value),
         ]),
         'ERROR: Invalid Bank Locator field in Type 17 (Memory Device) record.',
         ('ACTION: Please populate Bank Locator field with valid string.\n'
-         'This field is string number of the string that identifies the physically labeled bank '
-         'where the memory device is located.')),
+         'This is the string that identifies the physically labeled bank '
+         'where the memory device is located.'
+        )),
     Rule(
         matcher.Matcher([
             matcher.RecordTypeMatcher(constants.RecordType.MEMORY_DEVICE_RECORD)
@@ -766,11 +771,41 @@ rules = [
             validator.FieldPresentChecker('Partition Row Position'),
             validator.FieldValueRegexpChecker(
                 'Partition Row Position',
-                constants.FieldValueRegexps.NUMBER_REGEXP.value),
+                constants.FieldValueRegexps.NUMBER_WITH_UNKNOWN_REGEXP.value),
         ]),
         'ERROR: Invalid Partition Row Position field in Type 20 (Memory Array Mapped Address) record.',
-        ('ACTION: Please populate Partition Row Position field with valid number.\n',
+        ('ACTION: Please populate Partition Row Position field with valid number.\n'
          'This is the position of the referenced Memory Device in a row of the address partition.'
+        )),
+    Rule(
+        matcher.Matcher([
+            matcher.RecordTypeMatcher(
+                constants.RecordType.MEMORY_DEVICE_MAPPED_ADDRESS_RECORD)
+        ]),
+        validator.IndividualValidator([
+            validator.FieldPresentChecker('Interleave Position'),
+            validator.FieldValueRegexpChecker(
+                'Interleave Position',
+                constants.FieldValueRegexps.NUMBER_WITH_UNKNOWN_REGEXP.value),
+        ]),
+        'ERROR: Invalid Interleave Position field in Type 20 (Memory Array Mapped Address) record.',
+        ('ACTION: Please populate Interleave Position field with valid number.\n'
+         'The value 0 indicates non-interleaved, 1 indicates first interleave position,'
+         '2 the second interleave position and so on.')),
+    Rule(
+        matcher.Matcher([
+            matcher.RecordTypeMatcher(
+                constants.RecordType.MEMORY_DEVICE_MAPPED_ADDRESS_RECORD)
+        ]),
+        validator.IndividualValidator([
+            validator.FieldPresentChecker('Interleaved Data Depth'),
+            validator.FieldValueRegexpChecker(
+                'Interleaved Data Depth',
+                constants.FieldValueRegexps.NUMBER_WITH_UNKNOWN_REGEXP.value),
+        ]),
+        'ERROR: Invalid Interleaved Data Depth field in Type 20 (Memory Array Mapped Address) record.',
+        ('ACTION: Please populate Interleaved Data Depth field with valid number.\n'
+         'Example: If a device transfers two rows each time it is read, its interleaved data depth is 2.'
         )),
 
     # Rules for Type 38 (IPMI Device Information) records
@@ -786,7 +821,7 @@ rules = [
                 constants.FieldValueEnums.IPMI_DEVICE_INTERFACE_TYPES.value),
         ]),
         'ERROR: Invalid Interface Type field in Type 38 (IPMI Device Information) record.',
-        ('ACTION: Please populate Interface Type field with valid string.\n',
+        ('ACTION: Please populate Interface Type field with valid string.\n'
          'Valid Type(s): ' + ', '.join(
              constants.FieldValueEnums.IPMI_DEVICE_INTERFACE_TYPES.value))),
     Rule(
