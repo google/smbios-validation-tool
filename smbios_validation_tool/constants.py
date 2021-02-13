@@ -70,5 +70,5 @@ class FieldValueRegexps(enum.Enum):
   OEM_FOR_GOOGLE_REGEXP = r'0x[0-9A-Fa-f]*67'
   VENDOR_FOR_GOOGLE_REGEXP = r'.*Google.*'
   SOCKET_DESIGNATION_REGEXP = r'(CPU|P)\d+'
-  DEVICE_LOCATOR_REGEXP = r'.*(DIMM|Slot).*\d+'
+  DEVICE_LOCATOR_REGEXP = r'(?:[^\d]*)\d+'
   BANK_LOCATOR_REGEXP = r'.*(Node|Channel).*'

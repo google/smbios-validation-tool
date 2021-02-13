@@ -1043,7 +1043,7 @@ Memory Device
 	Size: 64 GB
 	Form Factor: DIMM
 	Set: None
-	Locator: DIMM84
+	Locator: J5
 	Bank Locator: Node 0
 	Type: DDR4
 	Type Detail: Synchronous
