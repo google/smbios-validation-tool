@@ -844,13 +844,13 @@ rules = [
                 constants.RecordType.IPMI_DEVICE_INFO_RECORD)
         ]),
         validator.IndividualValidator([
-            validator.FieldPresentChecker('I2C Slave Address'),
+            validator.FieldPresentChecker('I2C Address'),
             validator.FieldValueRegexpChecker(
-                'I2C Slave Address',
+                'I2C Address',
                 constants.FieldValueRegexps.HEX_REGEXP.value),
         ]),
-        'ERROR: Invalid I2C Slave Address field in Type 38 (IPMI Device Information) record.',
-        'ACTION: Please populate I2C Slave Address field with valid address.'),
+        'ERROR: Invalid I2C Address field in Type 38 (IPMI Device Information) record.',
+        'ACTION: Please populate I2C Address field with valid address.'),
 
     # Rules for Type 160 (Google Bridge Device Structure) records
     Rule(

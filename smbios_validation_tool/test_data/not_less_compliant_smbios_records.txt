@@ -583,7 +583,7 @@ Handle 0x005D, DMI type 38, 18 bytes
 IPMI Device Information
 	Interface Type: BT (Block Transfer)
 	Specification Version: 0.0
-	I2C Slave Address: 0x10
+	I2C Address: 0x10
 	NV Storage Device: Not Present
 	Base Address: 0x00000000000000E4 (I/O)
 	Register Spacing: Successive Byte Boundaries
