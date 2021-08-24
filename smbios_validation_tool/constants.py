@@ -51,7 +51,7 @@ class FieldValueEnums(enum.Enum):
   PHYSICAL_MEMORY_ARRAY_LOCATION = ['System Board Or Motherboard']
   PHYSICAL_MEMORY_ARRAY_USE = ['System Memory']
   MEMORY_DEVICE_FORM_FACTOR = ['Unknown', 'DIMM']
-  MEMORY_DEVICE_TYPES = ['Unknown', 'DDR4', 'LPDDR4', 'DDR5']
+  MEMORY_DEVICE_TYPES = ['Unknown', 'DDR4', 'LPDDR4', 'DDR5', 'Logical non-volatile device']
   IPMI_DEVICE_INTERFACE_TYPES = [
       'BT (Block Transfer)', 'KCS (Keyboard Control Style)'
   ]
