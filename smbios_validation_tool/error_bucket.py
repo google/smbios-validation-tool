@@ -1,4 +1,3 @@
-# Lint as: python3
 # Copyright 2019 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,6 +19,7 @@ debug messagee.
 """
 
 import collections
+from smbios_validation_tool import constants
 import termcolor
 
 
@@ -28,13 +28,25 @@ class ErrorBucket:
 
   def __init__(self):
     self.bucket = collections.defaultdict(list)
+    self.handle_info = collections.defaultdict(int)
 
   def add_error(self, handle_id, error_action_msg_pair):
     self.bucket[handle_id].append(error_action_msg_pair)
 
+  def add_handle_info(self, handle_id, structure_type):
+    self.handle_info[handle_id] = structure_type
+
   def print_buckets(self):
     for handle_id in sorted(self.bucket):
-      handle_msg = 'Handle ID: ' + handle_id
+      handle_msg = (
+          'Handle ID: '
+          + handle_id
+          + '\nType '
+          + str(self.handle_info[handle_id])
+          + ' ('
+          + constants.StructureName.get(self.handle_info[handle_id])
+          + ')'
+      )
       print(termcolor.colored(handle_msg, attrs=['bold']))
       for err_msg, action_msg in self.bucket[handle_id]:
         print(termcolor.colored(err_msg, color='red', attrs=['bold']))

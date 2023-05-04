@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 #
-# Lint as: python3
 # Copyright 2019 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -61,16 +60,29 @@ def main(argv):
   # Validate rules for individual SMBIOS record
   error_bucket = ErrorBucket()
   for record in records.values():
-    for rule in rules.rules:
-      # Not a matched record, no need to validate it
-      if not rule.matchers.is_matched_record(record):
-        continue
-      # Validation passed, no error message to print
-      if rule.validators.validate_rule(record, records):
-        continue
-
+    error_bucket.add_handle_info(record.handle_id, record.type_id)
+    field_rules = rules.default_rules.get(record.type_id)
+    # Cannot find requirement for record's type
+    if not field_rules:
+      continue
+    # Not all validation pass
+    if not field_rules.all_rules_validate(record, records, error_bucket):
       is_less_compliant = False
-      error_bucket.add_error(record.handle_id, (rule.err_msg, rule.action_msg))
+
+    match record.type_id:
+      # Special case for type 17 check when the socket is populated
+      # TODO(katrincheung): Update after there's more example of conditions
+      case 17:
+        if (
+            'Size' in record.props
+            and record.props['Size'].val != 'No Module Installed'
+        ):
+          if not rules.CONIDTION_RULES_17.all_rules_validate(
+              record, records, error_bucket
+          ):
+            is_less_compliant = False
+      case _:
+        continue
 
   # Validate groups of SMBIOS records
   if not GroupValidator(records, groups).validate():
