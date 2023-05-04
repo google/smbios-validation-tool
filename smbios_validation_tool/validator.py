@@ -1,4 +1,3 @@
-# Lint as: python3
 # Copyright 2019 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -54,7 +53,7 @@ class FieldValueRegexpChecker:
     if not record or self.field not in record.props:
       return False
     prop = record.props[self.field]
-    return self.regexp.match(prop.val)
+    return self.regexp.fullmatch(prop.val)
 
 
 class FieldValueEnumChecker:
@@ -70,10 +69,10 @@ class FieldValueEnumChecker:
     self.enum = enum
 
   def validate(self, record, _):
-    if not record or self.field not in record.props:
-      return False
-    prop_values = record.props[self.field].val.split(', ')
-    return set(prop_values) <= set(self.enum)
+    enum_join = '|'.join(self.enum)
+    regexp = r'(' + enum_join + r'){1}(\s+(' + enum_join + r'))*$'
+    checker = FieldValueRegexpChecker(self.field, regexp)
+    return checker.validate(record, _)
 
 
 class FieldItemCountChecker:
@@ -169,6 +168,8 @@ class HandleFieldChecker:
     if not record or self.field not in record.props:
       return False
     handle_id = record.props[self.field].val
+    if handle_id not in records:
+      return False
     # Make sure the format of handle id is equivalent to all other handles
     # e.g. '0x123' will become '0x0123'.
     handle_id = '0x{:04X}'.format(int(handle_id, 16))
@@ -217,7 +218,7 @@ class RecordsPresenceChecker:
 
     # Check if motherboard record exists
     motherboard_record_exists = False
-    board_info_records = self.groups[constants.RecordType.BASEBOARD_RECORD]
+    board_info_records = self.groups[constants.StructureType.BOARD_INFORMATION]
     for handle_id in board_info_records:
       record = self.records[handle_id]
       if 'Type' in record.props and record.props['Type'].val == 'Motherboard':
@@ -251,7 +252,7 @@ class MemoryGroupAssociationsChecker:
     self.err_msgs = {}
 
     # Collect all handles for die, controller and channel records.
-    group_records = self.groups[constants.RecordType.GROUP_ASSOCIATIONS_RECORD]
+    group_records = self.groups[constants.StructureType.GROUP_ASSOCIATIONS]
     self.dies = []
     self.controllers = []
     self.channels = []
