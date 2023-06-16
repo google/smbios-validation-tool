@@ -1,0 +1,349 @@
+
+# BIOS Information
+type_rule {
+  type: 0
+  count: 1
+  rule {
+    field: "Vendor"
+    validations {
+      regexp_validate: ".*Google.*"
+    }
+  }
+  rule {
+    field: "Version"
+  }
+  rule {
+    field: "Release Date"
+    validations {
+      regexp_validate: "\\d{2}/\\d{2}/\\d{4}"
+    }
+  }
+  rule {
+    field: "ROM Size"
+    validations {
+      regexp_validate: "\\d+ [kmgKMG]B"
+    }
+  }
+}
+
+# System Information
+type_rule {
+  type: 1
+  count: 1
+  rule {
+    field: "Product Name"
+    field: "Version"
+    field: "Serial Number"
+  }
+  rule {
+    field: "Manufacturer"
+    validations {
+      regexp_validate: "(Google|Dell|HP|GOOGLE)"
+    }
+  }
+}
+
+# Board Information
+type_rule {
+  type: 2
+  count: 1
+  rule {
+    field: "Manufacturer"
+    field: "Product Name"
+    field: "Version"
+    field: "Serial Number"
+    field: "Asset Tag"
+    field: "Features"
+  }
+  rule {
+    field: "Type"
+    validations {
+      not_contain_validate: ["OUT OF SPEC"]
+    }
+  }
+  rule {
+    field: "Contained Object Handles"
+    validations {
+      item_count_unique_validate: 1
+      handles_presence_validate: true
+    }
+  }
+}
+
+# Chassis and Tray Information
+type_rule {
+  type: 3
+  rule {
+    field: "Manufacturer"
+  }
+  rule {
+    field: "Type"
+    validations {
+      in_list_validate: ["Main Server Chassis", "Rack Mount Chassis"]
+    }
+  }
+  rule {
+    field: "OEM Information"
+    validations {
+      regexp_validate: "0x[0-9A-Fa-f]{6}67"
+    }
+  }
+  rule {
+    field: "Contained Elements"
+    validations {
+      regexp_validate: "\\d+"
+      item_count_unique_validate: 1
+    }
+  }
+}
+
+# Processor Information
+type_rule {
+  type: 4
+  count: 1
+  rule {
+    field: "Socket Designation"
+    validations {
+      # No actual restrcition, but commonly use CPU0, CPU1...
+      regexp_validate: "(CPU|P|DPU)\\d+"
+    }
+  }
+  rule {
+    field: "Status"
+    validations {
+      regexp_validate: "(Unpopulated)|(Populated,\\s(Enabled|Disabled By User|Disabled By BIOS|Idle))"
+    }
+  }
+  rule {
+    field: "Version"
+    validations {
+      regexp_validate: "^(Intel|AMD|CYRIX|Centaur|NextGen|TMx86|RISE|UMC|IBM|APM|Qualcomm|Cavium|ARM|Ampere|Marvell|Google)"
+    }
+  }
+}
+
+# Port Connector Information
+type_rule {
+  type: 8
+  rule {
+    field: "External Reference Designator"
+    field: "External Connector Type"
+    field: "Port Type"
+  }
+}
+
+# System Slots
+type_rule {
+  type: 9
+  conditional_rule {
+    condition {
+      field: "Type"
+      validations {
+        regexp_validate: "PCI"
+      }
+    }
+    rule {
+      field: "Designation"
+      validations {
+        regexp_validate: "^(PE|M2_)\\d+$"
+      }
+    }
+    rule {
+      field: "Current Usage"
+      validations {
+        in_list_validate: ["In Use", "Available", "Unknown"]
+      }
+    }
+    rule {
+      field: "Length"
+      validations {
+        in_list_validate: ["Long", "Short"]
+      }
+    }
+    rule {
+      field: "ID"
+      validations {
+        regexp_validate: "\\d{1,2}|(Adapter \\d{1,2}, Socket \\d{1,2})"
+      }
+    }
+    rule {
+      field: "Characteristics"
+    }
+    rule {
+      field: "Bus Address"
+      validations {
+        regexp_validate: "[0-9a-f]{4}:[0-9a-f]{2}:[0-9a-f]{2}\\.[0-9a-f]"
+      }
+    }
+  }
+}
+
+# Group Associations
+type_rule {
+  type: 14
+  rule {
+    field: "Name"
+  }
+  rule {
+    field: "Items"
+    validations {
+      item_count_unique_validate: 1
+      handles_presence_validate: true
+    }
+  }
+}
+
+# Memory Device
+type_rule {
+  type: 17
+  rule {
+    field: "Size"
+    validations {
+      regexp_validate: "(Unknown)|(No Module Installed)|(\\d+ (MB|GB|TB))"
+    }
+  }
+  rule {
+    field: "Locator"
+    validations {
+      regexp_validate: "DIMM\\d+"
+    }
+  }
+  rule {
+    field: "Type"
+    validations {
+      in_list_validate: ["Unknown", "DDR4", "LPDDR4", "DDR5"]
+    }
+  }
+  rule {
+    field: "Type Detail"
+  }
+  conditional_rule {
+    condition {
+      field: "Size"
+      validations {
+        not_contain_validate: "No Module Installed"
+      }
+    }
+    rule {
+      field: "Speed"
+      validations {
+        regexp_validate: "(Unknown)|\\d+ MT/s"
+      }
+    }
+    rule {
+      field: "Manufacturer"
+      field: "Serial Number"
+      field: "Part Number"
+    }
+  }
+}
+
+# System Root Information
+type_rule {
+  type: 32
+  count: 1
+  rule {
+    field: "Status"
+    validations {
+      not_contain_validate: ["OUT OF SPEC"]
+    }
+  }
+}
+
+# IPMI Device Information
+type_rule {
+  type: 38
+  rule {
+    field: "Interface Type"
+    field: "Register Spacing"
+    validations {
+      not_contain_validate: ["OUT OF SPEC", "Unknown"]
+    }
+  }
+  rule {
+    field: "Specification Version"
+    validations {
+      regexp_validate: "[\\d]+.[\\d]+"
+    }
+  }
+  rule {
+    field: "I2C Address"
+    validations {
+      regexp_validate: "0x[0-9a-fA-F]+"
+    }
+  }
+  rule {
+    field: "Base Address"
+    validations {
+      regexp_validate: "0x[0-9a-fA-F]+ \\((I/O|Memory-mapped)\\)"
+    }
+  }
+  rule {
+    field: "Interrupt Number"
+    validations {
+      regexp_validate: "(Unspecified)|(Unsupported)|([1-9]|1[0-5])"
+    }
+  }
+}
+
+# Onboard Devices Extended Information
+type_rule {
+  type: 41
+  rule {
+    field: "Reference Designation"
+  }
+  rule {
+    field: "Type"
+    validations {
+      not_contain_validate: ["OUT OF SPEC"]
+    }
+  }
+  rule {
+    field: "Type Instance"
+    validations {
+      regexp_validate: "\\d+"
+    }
+  }
+  rule {
+    field: "Bus Address"
+    validations {
+      regexp_validate: "[0-9a-f]{4}:[0-9a-f]{2}:[0-9a-f]{2}\\.[0-9a-f]"
+    }
+  }
+}
+
+# Google CPU Link Structure
+type_rule {
+  type: 162
+  count: 1
+  rule {
+    field: "Identifier"
+    field: "Speed Unit"
+  }
+  rule {
+    field: "Function bitmap for CPU Link Capabilities"
+    validations {
+      regexp_validate: "0x[0-9a-fA-F]+"
+    }
+  }
+  rule {
+    field: "Link Direction"
+    validations {
+      in_list_validate: ["Unknown", "Engress", "Ingress", "Bidrectional", "Other"]
+    }
+  }
+  rule {
+    field: "Max Speed"
+    field: "Current Speed"
+    validations {
+      regexp_validate: "\\d+ (Unknown|Mhz|Ghz|MT/s|GT/s|Other)"
+    }
+  }
+  rule {
+    field: "Source CPU"
+    field: "Designation CPU"
+    validations {
+      handle_type_validate: 4
+    }
+  }
+}

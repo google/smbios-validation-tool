@@ -1,0 +1,294 @@
+# This rules is based on the Arm Base Boot Requirements 2.0
+# https://developer.arm.com/documentation/den0044/latest
+
+# BIOS Information
+type_rule {
+  type: 0
+  count: 1
+  rule {
+    field: "Vendor"
+    validations {
+      regexp_validate: ".*Google.*"
+    }
+  }
+  rule {
+    field: "Version"
+    field: "Release Date"
+    field: "BIOS Revision"  # 0ffh is filtered by dmidecode
+    field: "Firmware Revision"  # 0ffh is filtered by dmidecode
+  }
+  rule {
+    field: "ROM Size"
+    validations {
+      regexp_validate: "\\d+ (MB|GB)"  # MB/GB from Extended BIOS ROM Size
+    }
+  }
+}
+
+# System Information
+type_rule {
+  type: 1
+  count: 1
+  rule {
+    field: "Manufacturer"
+    field: "Product Name"
+    field: "Version"
+    field: "Serial Number"
+    field: "UUID"
+    field: "SKU Number"
+    field: "Family"
+  }
+}
+
+# Board Information
+type_rule {
+  type: 2
+  count: 1
+  rule {
+    field: "Manufacturer"
+    field: "Product Name"
+    field: "Version"
+    field: "Serial Number"
+    field: "Asset Tag"
+    field: "Features"
+    field: "Location In Chassis"
+  }
+  rule {
+    field: "Type"
+    validations {
+      not_contain_validate: ["OUT OF SPEC"]
+    }
+  }
+}
+
+# Chassis and Tray Information
+type_rule {
+  type: 3
+  count: 1
+  rule {
+    field: "Manufacturer"
+    field: "Type"
+    field: "Version"
+    field: "Serial Number"
+    field: "Asset Tag"
+    field: "Height"
+    field: "SKU Number"
+    # Enclosure Type is required from abbr but cannot find it in smbios ref spec.
+  }
+}
+
+# Processor Information
+# Exactly one Type04 structure must be provided for every socket in the system.
+type_rule {
+  type: 4
+  count: 1
+  rule {
+    field: "Socket Designation"
+    field: "Type"
+    field: "Manufacturer"
+    field: "Version"
+    field: "Max Speed"
+    field: "Status"
+    field: "Core Count"
+    field: "Core Enabled"
+    field: "Thread Count"
+  }
+}
+
+# Cache Information
+type_rule {
+  type: 7
+  count: 1
+  rule {
+    field: "Socket Designation"
+    field: "Configuration"
+    field: "Maximum Size"
+    field: "Installed Size"
+    field: "Speed"
+    field: "Maximum Cache Size 2"
+    field: "Installed Cache Size 2"
+  }
+}
+
+# Port Connector Information
+type_rule {
+  type: 8
+  rule {
+    field: "Internal Reference Designator"
+    field: "Internal Connector Type"
+    field: "External Reference Designator"
+    field: "External Connector Type"
+    field: "Port Type"
+  }
+}
+
+# System Slots (required for platforms with expansion slots)
+type_rule {
+  type: 9
+  rule {
+    field: "Designation"
+    field: "Type"
+    field: "Current Usage"
+    field: "ID"
+    field: "Characteristics"
+    field: "Bus Address"
+    field: "Peer Devices"
+    field: "Peer Device"
+  }
+}
+
+#  BIOS Language Information
+type_rule {
+  type: 13
+  rule {
+    field: "Installable Languages"
+    field: "Language Description Format"
+    field: "Currently Installed Language"
+  }
+}
+
+# Group Associations
+type_rule {
+  type: 14
+  rule {
+    field: "Name"
+    field: "Items"
+  }
+}
+
+# Physical Memory Array
+type_rule {
+  type: 16
+  count: 1
+  rule {
+    field: "Location"
+    field: "Use"
+    field: "Maximum Capacity"
+    field: "Number Of Devices"
+  }
+}
+
+# Memory Device
+type_rule {
+  type: 17
+  count: 1
+  rule {
+    field: "Total Width"
+    field: "Data Width"
+    field: "Size"
+    field: "Locator"
+    field: "Type"
+    field: "Type Detail"
+    field: "Speed"
+    field: "Manufacturer"
+    field: "Serial Number"
+    field: "Asset Tag"
+    field: "Part Number"
+  }
+  conditional_rule {
+    condition {
+      field: "Memory Technology"
+      validations {
+        regexp_validate: "^(NVDIMM)"
+      }
+    }
+    rule {
+      field: "Memory Operating Mode Capability"
+      field: "Non-Volatile Size"
+      field: "Volatile Size"
+      field: "Cache Size"
+      field: "Logical Size"
+    }
+  }
+}
+
+# Memory Array Mapped Address
+type_rule {
+  type: 19
+  count: 1
+  rule {
+    field: "Starting Address"
+    field: "Ending Address"
+  }
+}
+
+# System Boot Information
+type_rule {
+  type: 32
+  count: 1
+  rule {
+    field: "Status"
+  }
+}
+
+# IPMI Device Information
+type_rule {
+  type: 38
+  count: 1
+  rule {
+    field: "Specification Version"
+    field: "I2C Address"
+    field: "Base Address"
+    field: "Interrupt Number"
+  }
+}
+
+# System Power Supplies
+type_rule {
+  type: 39
+  rule {
+    field: "Location"
+    field: "Name"
+    field: "Manufacturer"
+    field: "Serial Number"
+    field: "Asset Tag"
+    field: "Model Part Number"
+    field: "Revision"
+    field: "Max Power Capacity"
+  }
+}
+
+# Onboard Devices Extended Information
+type_rule {
+  type: 41
+  rule {
+    field: "Reference Designation"
+    field: "Type"
+    field: "Type Instance"
+    field: "Bus Address"
+  }
+}
+
+# Redfish Host Interface (required for platforms supporting Redfish Host Interface)
+type_rule {
+  type: 42
+  rule {
+    field: "Interface Type"
+  }
+}
+
+# TPM Device (required for platforms with a TPM)
+type_rule {
+  type: 43
+  rule {
+    field: "Vendor ID"
+    field: "Specification Version"
+    field: "Firmware Revision"
+    field: "Description"
+    field: "Characteristics"
+  }
+}
+
+# Firmware Inventory Information
+type_rule {
+  type: 45
+  rule {
+    field: "Firmware Component Name"
+    field: "Firmware ID"
+    field: "Release Date"
+    field: "Manufacturer"
+    field: "Characteristics"
+    field: "State"
+    field: "Associated Components"
+  }
+}

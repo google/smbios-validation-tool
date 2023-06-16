@@ -1,0 +1,52 @@
+syntax = "proto2";
+
+package rule;
+
+option go_package = "./rule";
+
+// Validations is the set of validations for a field.
+message Validations {
+  // RegexpValidate checks the field value match the regexp.
+  optional bytes regexp_validate = 1;
+
+  // InListValidate checks the field value is in the list.
+  repeated string in_list_validate = 2;
+
+  // NotContainValidate checks the field value doesn't contain not_contain.
+  repeated string not_contain_validate = 3;
+
+  // ItemCountUniqueValidate checks the number of items match the count and make
+  // sure there is no duplicate item.
+  optional int32 item_count_unique_validate = 4 [default = -1];
+
+  // HandleTypeValidate checks the handle in this field is pointing to the
+  // expected handle type.
+  optional int32 handle_type_validate = 5 [default = -1];
+
+  // HandlePresenceValidate checks all the handles in the item list are present.
+  optional bool handles_presence_validate = 6 [default = false];
+}
+
+// Rule for each field.
+message Rule {
+  repeated string field = 1;
+  optional Validations validations = 2;
+}
+
+// We only check this rule when the condition is satisfied.
+message ConditionalRule {
+  repeated Rule condition = 1;
+  repeated Rule rule = 2;
+}
+
+// TypeRule defines all the field rules in one type.
+message TypeRule {
+  optional int32 type = 1;
+  optional int32 count = 2;
+  repeated Rule rule = 3;
+  repeated ConditionalRule conditional_rule = 4;
+}
+
+message RuleSet {
+  repeated TypeRule type_rule = 1;
+}
