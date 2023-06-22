@@ -280,7 +280,7 @@ func (r *fieldRule) validateHandlePresence(record dmiparser.Record, records map[
 	prop := record.Props[r.field]
 	for _, item := range prop.Item {
 		// Clean up possible string following the handle.
-		handle, _, _ := strings.Cut(item, " ")
+		handle, _, _ := stringsCut(item, " ")
 		pattern := regexp.MustCompile(string(`0[xX][0-9a-fA-F]{4}`))
 		if !pattern.MatchString(handle) {
 			r.addError(prop.Val, fmt.Sprintf("Error: %v doesn't match handle pattern %v", handle, "0[xX][0-9a-fA-F]{4}"))
@@ -297,4 +297,12 @@ func (r *fieldRule) validateHandlePresence(record dmiparser.Record, records map[
 
 func (r *fieldRule) addError(val, msg string) {
 	r.errMsg = append(r.errMsg, fmt.Sprintf("Field: %v, Value: %v\n\033[31m%v\033[0m\n", r.field, val, msg))
+}
+
+// TODO: temporary until all users update to go1.19
+func stringsCut(s, sep string) (before, after string, found bool) {
+	if i := strings.Index(s, sep); i >= 0 {
+		return s[:i], s[i+len(sep):], true
+	}
+	return s, "", false
 }
