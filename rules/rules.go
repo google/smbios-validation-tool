@@ -29,6 +29,7 @@ func RuleUnmarshal(path string) ([]*pb.TypeRule, error) {
 
 // CountRequiredTables verifies the number of tables in each type
 func CountRequiredTables(ruleList []*pb.TypeRule, records map[string]dmiparser.Record) bool {
+	compliance := true
 	ruleCount := make(map[string]int)
 	for _, rule := range ruleList {
 		ruleCount[strconv.Itoa(int(rule.GetType()))] = int(rule.GetCount())
@@ -41,10 +42,10 @@ func CountRequiredTables(ruleList []*pb.TypeRule, records map[string]dmiparser.R
 	for typeID, count := range ruleCount {
 		if count > recordCount[typeID] {
 			fmt.Printf("Not enough table type %v. Required: %d, Got %d\n", typeID, count, recordCount[typeID])
-			return false
+			compliance = false
 		}
 	}
-	return true
+	return compliance
 }
 
 type fieldRule struct {
