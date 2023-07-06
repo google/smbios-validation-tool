@@ -1,0 +1,24 @@
+# System Slots
+type_rule {
+  type: 9
+  conditional_rule {
+    condition {
+      field: "Designation"
+      validations {
+        regexp_validate: "^(M2_)\\d+$"
+      }
+    }
+    rule {
+      field: "Type"
+      validations {
+        regexp_validate: "(M.2 Socket 3)"
+      }
+    }
+    rule {
+      field: "Bus Address"
+      validations {
+        regexp_validate: "[0-9a-f]{4}:[0-9a-f]{2}:[0-9a-f]{2}\\.[0-9a-f]"
+      }
+    }
+  }
+}
