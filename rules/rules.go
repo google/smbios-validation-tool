@@ -190,7 +190,7 @@ func (r *fieldRule) validateAll(handleID string, records map[string]dmiparser.Re
 
 func (r *fieldRule) validatePresence(record dmiparser.Record) bool {
 	if _, ok := record.Props[r.field]; !ok {
-		r.addError("", fmt.Sprintf("Error: Field not found in table"))
+		r.addError("", fmt.Sprintf("Error: Field is missing from the table"))
 		return false
 	}
 	if prop := record.Props[r.field]; prop.Val == "<BAD INDEX>" && prop.Item == nil {
@@ -267,7 +267,7 @@ func (r *fieldRule) validateHandleType(record dmiparser.Record, records map[stri
 	}
 	targetRecord, ok := records[prop.Val]
 	if !ok {
-		r.addError(prop.Val, fmt.Sprintf("Error: %v not found in smbios table", prop.Val))
+		r.addError(prop.Val, fmt.Sprintf("Error: Handle %v not found in SMBIOS table", prop.Val))
 		return false
 	}
 	if targetRecord.Type != strconv.Itoa(handleType) {
@@ -288,7 +288,7 @@ func (r *fieldRule) validateHandlePresence(record dmiparser.Record, records map[
 		} else {
 			_, ok := records[handle]
 			if !ok {
-				r.addError(prop.Val, fmt.Sprintf("Error: %v not found in smbios table", handle))
+				r.addError(prop.Val, fmt.Sprintf("Error: Handle %v not found in the SMBIOS table", handle))
 				return false
 			}
 		}
