@@ -117,7 +117,7 @@ type_rule {
   rule {
     field: "Version"
     validations {
-      regexp_validate: "^(Intel|AMD|CYRIX|Centaur|NextGen|TMx86|RISE|UMC|IBM|APM|Qualcomm|Cavium|ARM|Ampere|Marvell|Google)"
+      regexp_validate: "(?i)(Intel|AMD|CYRIX|Centaur|NextGen|TMx86|RISE|UMC|IBM|APM|Qualcomm|Cavium|ARM|Ampere|Marvell)"
     }
   }
 }
@@ -246,42 +246,6 @@ type_rule {
     field: "Status"
     validations {
       not_contain_validate: ["OUT OF SPEC"]
-    }
-  }
-}
-
-# IPMI Device Information
-type_rule {
-  type: 38
-  rule {
-    field: "Interface Type"
-    field: "Register Spacing"
-    validations {
-      not_contain_validate: ["OUT OF SPEC", "Unknown"]
-    }
-  }
-  rule {
-    field: "Specification Version"
-    validations {
-      regexp_validate: "[\\d]+.[\\d]+"
-    }
-  }
-  rule {
-    field: "I2C Address"
-    validations {
-      regexp_validate: "0x[0-9a-fA-F]+"
-    }
-  }
-  rule {
-    field: "Base Address"
-    validations {
-      regexp_validate: "0x[0-9a-fA-F]+ \\((I/O|Memory-mapped)\\)"
-    }
-  }
-  rule {
-    field: "Interrupt Number"
-    validations {
-      regexp_validate: "(Unspecified)|(Unsupported)|([1-9]|1[0-5])"
     }
   }
 }
