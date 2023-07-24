@@ -28,7 +28,8 @@ func main() {
 		return
 	}
 	compliance := validation(handleIDs, records, ruleList)
-	fmt.Println("Compliance: ", compliance)
+	fmt.Println("Rule:", *ruleFile)
+	fmt.Println("Compliance:", compliance)
 }
 
 func validation(handleIDs []string, records map[string]dmiparser.Record, ruleList []*pb.TypeRule) bool {

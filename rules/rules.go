@@ -51,6 +51,7 @@ func CountRequiredTables(ruleList []*pb.TypeRule, records map[string]dmiparser.R
 type fieldRule struct {
 	field       string
 	validations *pb.Validations
+	itemsRules  fieldRules
 	errMsg      []string
 }
 
@@ -65,10 +66,12 @@ func newRules(r []*pb.Rule) fieldRules {
 	rules := make([]fieldRule, length)
 	i := 0
 	for _, rule := range r {
+		itemRules := newRules(rule.GetItemRule())
 		for _, field := range rule.GetField() {
 			rules[i] = fieldRule{
 				field:       field,
 				validations: rule.GetValidations(),
+				itemsRules:  itemRules,
 				errMsg:      []string{},
 			}
 			i++
@@ -159,13 +162,40 @@ func (rules fieldRules) collectErrMsg() []string {
 	return errMsg
 }
 
-// validateAll runs all the checks for a single field.
+// validateAll checks the record exist and validate it.
 func (r *fieldRule) validateAll(handleID string, records map[string]dmiparser.Record) bool {
 	record := records[handleID]
 	// Presence must be checked before running other validators.
 	if !r.validatePresence(record) {
 		return false
 	}
+	compliance := r.validateAllImpl(record, records)
+	if len(r.itemsRules) != 0 {
+		subProps := map[string]dmiparser.Field{}
+		prop := record.Props[r.field]
+		for _, item := range prop.Item {
+			field, val, ok := stringsCut(item, ":")
+			if !ok {
+				r.addError("", fmt.Sprintf("Error: %q is not in field:val format", item))
+				return false
+			}
+			if _, ok := subProps[field]; ok {
+				r.addError("", fmt.Sprintf("Error: duplicate field %q in item list", field))
+				return false
+			}
+			subProps[field] = dmiparser.Field{Val: strings.TrimSpace(val)}
+		}
+		subRecord := dmiparser.Record{Props: subProps}
+		for _, itemRule := range r.itemsRules {
+			compliance = itemRule.validateAllImpl(subRecord, records) && compliance
+			r.errMsg = append(r.errMsg, itemRule.errMsg...)
+		}
+	}
+	return compliance
+}
+
+// validateAllImpl runs all the checks for a single field.
+func (r *fieldRule) validateAllImpl(record dmiparser.Record, records map[string]dmiparser.Record) bool {
 	compliance := true
 	if r.validations.GetRegexpValidate() != nil {
 		compliance = r.validateRegexp(record, r.validations.GetRegexpValidate()) && compliance
@@ -188,18 +218,20 @@ func (r *fieldRule) validateAll(handleID string, records map[string]dmiparser.Re
 	return compliance
 }
 
+// validatePresence checks the field with value is exist in the table.
 func (r *fieldRule) validatePresence(record dmiparser.Record) bool {
 	if _, ok := record.Props[r.field]; !ok {
-		r.addError("", fmt.Sprintf("Error: Field is missing from the table"))
+		r.addError("", "Error: Field is missing from the table")
 		return false
 	}
 	if prop := record.Props[r.field]; prop.Val == "<BAD INDEX>" && prop.Item == nil {
-		r.addError("", fmt.Sprintf("Error: Field is found but value and item are missing"))
+		r.addError("", "Error: Field is found but value and item are missing")
 		return false
 	}
 	return true
 }
 
+// validateRegexp checks the value matches the regexp.
 func (r *fieldRule) validateRegexp(record dmiparser.Record, re []byte) bool {
 	prop := record.Props[r.field]
 	pattern := regexp.MustCompile(string(re))
@@ -209,6 +241,7 @@ func (r *fieldRule) validateRegexp(record dmiparser.Record, re []byte) bool {
 	return pattern.MatchString(prop.Val)
 }
 
+// validateNotContain checks any part of the value doens't not contain any string in the list.
 func (r *fieldRule) validateNotContain(record dmiparser.Record, list []string) bool {
 	prop := record.Props[r.field]
 	for _, val := range list {
@@ -221,6 +254,7 @@ func (r *fieldRule) validateNotContain(record dmiparser.Record, list []string) b
 	return true
 }
 
+// validateInList checks the value can be found from the list.
 func (r *fieldRule) validateInList(record dmiparser.Record, list []string) bool {
 	prop := record.Props[r.field]
 	for _, val := range list {
@@ -232,6 +266,8 @@ func (r *fieldRule) validateInList(record dmiparser.Record, list []string) bool 
 	return false
 }
 
+// validateItemUniqueCount checks the length of the items matches the value.
+// Every item in the item list should be unique.
 func (r *fieldRule) validateItemUniqueCount(record dmiparser.Record, itemLen int) bool {
 	prop := record.Props[r.field]
 	count, err := strconv.Atoi(prop.Val)
@@ -254,12 +290,10 @@ func (r *fieldRule) validateItemUniqueCount(record dmiparser.Record, itemLen int
 		}
 		uniqueMap[item] = true
 	}
-	if len(uniqueMap) != len(itemList) {
-		return false
-	}
-	return true
+	return len(uniqueMap) == len(itemList)
 }
 
+// validateHandleType checks if the value of this field is a handle pointing to a correct handleType.
 func (r *fieldRule) validateHandleType(record dmiparser.Record, records map[string]dmiparser.Record, handleType int) bool {
 	prop := record.Props[r.field]
 	if prop.Val == "Not Provided" {
@@ -277,6 +311,7 @@ func (r *fieldRule) validateHandleType(record dmiparser.Record, records map[stri
 	return true
 }
 
+// validateHandlePresence checks everything in the item list are handles and they are all exist.
 func (r *fieldRule) validateHandlePresence(record dmiparser.Record, records map[string]dmiparser.Record) bool {
 	prop := record.Props[r.field]
 	for _, item := range prop.Item {

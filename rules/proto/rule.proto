@@ -31,6 +31,9 @@ message Validations {
 message Rule {
   repeated string field = 1;
   optional Validations validations = 2;
+  // ItemsValidations treats item as another table of field-value pair and supports these validations:
+  // regexp_validate, in_list_validate, not_contain_validate, handle_type_validate.
+  repeated Rule item_rule = 3;
 }
 
 // We only check this rule when the condition is satisfied.

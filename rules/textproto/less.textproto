@@ -282,30 +282,32 @@ type_rule {
   count: 1
   rule {
     field: "Identifier"
-    field: "Speed Unit"
   }
   rule {
     field: "Function bitmap for CPU Link Capabilities"
     validations {
       regexp_validate: "0x[0-9a-fA-F]+"
     }
-  }
-  rule {
-    field: "Link Direction"
-    validations {
-      in_list_validate: ["Unknown", "Engress", "Ingress", "Bidrectional", "Other"]
+    item_rule {
+        field: "Speed Unit"
+    }
+    item_rule {
+      field: "Link Direction"
+      validations {
+        in_list_validate: ["Unknown", "Engress", "Ingress", "Bidirectional", "Other"]
+      }
     }
   }
   rule {
-    field: "Max Speed"
-    field: "Current Speed"
+    field: "Max speed"
+    field: "Current speed"
     validations {
       regexp_validate: "\\d+ (Unknown|Mhz|Ghz|MT/s|GT/s|Other)"
     }
   }
   rule {
     field: "Source CPU"
-    field: "Designation CPU"
+    field: "Destination CPU"
     validations {
       handle_type_validate: 4
     }
