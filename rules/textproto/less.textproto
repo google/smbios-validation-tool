@@ -1,4 +1,3 @@
-
 # BIOS Information
 type_rule {
   type: 0
@@ -53,7 +52,6 @@ type_rule {
     field: "Version"
     field: "Serial Number"
     field: "Asset Tag"
-    field: "Features"
   }
   rule {
     field: "Type"
@@ -70,43 +68,13 @@ type_rule {
   }
 }
 
-# Chassis and Tray Information
-type_rule {
-  type: 3
-  rule {
-    field: "Manufacturer"
-  }
-  rule {
-    field: "Type"
-    validations {
-      in_list_validate: ["Main Server Chassis", "Rack Mount Chassis"]
-    }
-  }
-  rule {
-    field: "OEM Information"
-    validations {
-      regexp_validate: "0x[0-9A-Fa-f]{6}67"
-    }
-  }
-  rule {
-    field: "Contained Elements"
-    validations {
-      regexp_validate: "\\d+"
-      item_count_unique_validate: 1
-    }
-  }
-}
-
 # Processor Information
 type_rule {
   type: 4
   count: 1
   rule {
     field: "Socket Designation"
-    validations {
-      # No actual restrcition, but commonly use CPU0, CPU1...
-      regexp_validate: "(CPU|P|DPU)\\d+"
-    }
+    field: "Signature"
   }
   rule {
     field: "Status"
@@ -137,7 +105,7 @@ type_rule {
   type: 9
   conditional_rule {
     condition {
-      field: "Type"
+      field: "Type" # Slot Type, Slot Data Bus Width
       validations {
         regexp_validate: "PCI"
       }
@@ -149,28 +117,7 @@ type_rule {
       }
     }
     rule {
-      field: "Current Usage"
-      validations {
-        in_list_validate: ["In Use", "Available", "Unknown"]
-      }
-    }
-    rule {
-      field: "Length"
-      validations {
-        in_list_validate: ["Long", "Short"]
-      }
-    }
-    rule {
-      field: "ID"
-      validations {
-        regexp_validate: "\\d{1,2}|(Adapter \\d{1,2}, Socket \\d{1,2})"
-      }
-    }
-    rule {
-      field: "Characteristics"
-    }
-    rule {
-      field: "Bus Address"
+      field: "Bus Address" # Segment Group, Bus Number, Device/Function Number
       validations {
         regexp_validate: "[0-9a-f]{4}:[0-9a-f]{2}:[0-9a-f]{2}\\.[0-9a-f]"
       }
@@ -269,7 +216,7 @@ type_rule {
     }
   }
   rule {
-    field: "Bus Address"
+    field: "Bus Address" # Segment Group, Bus Number, Device/Function Number
     validations {
       regexp_validate: "[0-9a-f]{4}:[0-9a-f]{2}:[0-9a-f]{2}\\.[0-9a-f]"
     }
@@ -288,19 +235,9 @@ type_rule {
     validations {
       regexp_validate: "0x[0-9a-fA-F]+"
     }
-    item_rule {
-        field: "Speed Unit"
-    }
-    item_rule {
-      field: "Link Direction"
-      validations {
-        in_list_validate: ["Unknown", "Engress", "Ingress", "Bidirectional", "Other"]
-      }
-    }
   }
   rule {
     field: "Max speed"
-    field: "Current speed"
     validations {
       regexp_validate: "\\d+ (Unknown|Mhz|Ghz|MT/s|GT/s|Other)"
     }
