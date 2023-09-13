@@ -226,7 +226,6 @@ type_rule {
 # Google CPU Link Structure
 type_rule {
   type: 162
-  count: 1
   rule {
     field: "Identifier"
   }
