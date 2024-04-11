@@ -183,6 +183,20 @@ type_rule {
       field: "Part Number"
     }
   }
+  conditional_rule {
+    condition {
+      field: "Type"
+      validations {
+        regexp_validate: "DDR5"
+      }
+    }
+    rule {
+      field: "Serial Number"
+      validations {
+        regexp_validate: "^[a-fA-F0-9]{18}$"
+      }
+    }
+  }
 }
 
 # System Root Information
