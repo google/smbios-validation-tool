@@ -13,6 +13,11 @@ type_rule {
   }
   rule {
     field: "Version"
+    validations {
+      regexp_validate: ".*\..*\..*\..*" # Follow version guidelines
+    }
+  }
+  rule {
     field: "Release Date"
     field: "BIOS Revision"  # 0ffh is filtered by dmidecode
     field: "Firmware Revision"  # 0ffh is filtered by dmidecode
