@@ -14,7 +14,7 @@ type_rule {
   rule {
     field: "Version"
     validations {
-      regexp_validate: ".*\..*\..*\..*" # Follow version guidelines
+      regexp_validate: ".*\\..*\\..*" # Follow version guidelines
     }
   }
   rule {
