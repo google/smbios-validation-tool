@@ -184,11 +184,22 @@ type_rule {
     field: "Locator"
     field: "Type"
     field: "Type Detail"
-    field: "Speed"
-    field: "Manufacturer"
-    field: "Serial Number"
-    field: "Asset Tag"
-    field: "Part Number"
+  }
+  # dmidecode omits module fields when Size is "No Module Installed".
+  conditional_rule {
+    condition {
+      field: "Size"
+      validations {
+        not_contain_validate: "No Module Installed"
+      }
+    }
+    rule {
+      field: "Speed"
+      field: "Manufacturer"
+      field: "Serial Number"
+      field: "Asset Tag"
+      field: "Part Number"
+    }
   }
   conditional_rule {
     condition {
